@@ -27,11 +27,13 @@ Use Composer to require `pickset` into your project.
 [user@host]$ composer require parseword/pickset
 ```
 
-Alias whichever classes you want with the `use` statement for convenience, and 
-go to town.
+Require Composer's autoloader, alias whichever classes you want with the `use` 
+statement for convenience, and go to town.
 
 ```php
 <?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
 use parseword\pickset\{
     DateUtils
 };
