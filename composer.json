@@ -1,0 +1,28 @@
+{
+    "name": "parseword/pickset",
+    "type": "library",
+    "description": "A collection of PHP utilities to unlock various functionality in your applications",
+    "keywords": ["php","utilities"],
+    "homepage": "https://github.com/parseword/pickset/",
+    "readme": "https://github.com/parseword/pickset/blob/master/README.md",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Shaun Cummiskey",
+            "email": "shaun@shaunc.com",
+            "homepage": "https://shaunc.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "docs": "https://github.com/parseword/pickset/"
+    },
+    "require": {
+        "php": ">=7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "parseword\\pickset\\": "src"
+        }
+    }
+}
