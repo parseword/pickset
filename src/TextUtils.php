@@ -39,7 +39,7 @@ class TextUtils
      * @param int $power The power based on which sizes are calculated
      * @return string
      */
-    public function bytesToHuman(int $bytes, int $precision = 2,
+    public static function bytesToHuman(int $bytes, int $precision = 2,
             int $power = 1024): string {
 
         if (!in_array($power, [1024, 1000])) {
