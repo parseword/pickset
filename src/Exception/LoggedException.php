@@ -33,9 +33,9 @@ class LoggedException extends \Exception
     /**
      * Attempt to write the exception to the log file, then raise it again.
      *
-     * @param type $message
-     * @param type $code
-     * @param \Throwable $previous
+     * @param string $message The error message contained in the exception
+     * @param int $code The numeric error code, if any
+     * @param \Throwable $previous The previous exception in the chain, if any
      */
     public function __construct($message = '', $code = 0,
             \Throwable $previous = null) {
