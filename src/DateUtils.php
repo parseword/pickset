@@ -9,7 +9,7 @@ namespace parseword\pickset;
  * *****************************************************************************
  * This file is part of pickset, a collection of PHP utilities.
  *
- * Copyright 2012, 2019 Shaun Cummiskey <shaun@shaunc.com> <https://shaunc.com/>
+ * Copyright 2012, 2022 Shaun Cummiskey <shaun@shaunc.com> <https://shaunc.com/>
  * and additional contributors or muses where indicated.
  *
  * Repository: <https://github.com/parseword/pickset/>
@@ -178,6 +178,58 @@ class DateUtils
         $epoch = $epoch ?? time();
         $function = $gmt ? 'gmmktime' : 'mktime';
         return $function(0, 0, 0, 1, 1, date('Y', $epoch));
+    }
+
+    /**
+     * Convert a number of milliseconds into an array containing the corresponding
+     * numbers of days, hours, minutes, seconds, and milliseconds. For example,
+     * 530346265 becomes
+     * ['days' => 6, 'hours' => 3, 'minutes' => 19, 'seconds' => 6, 'millis' => 265]
+     *
+     * @param int $millis
+     * @return array
+     */
+    public static function millisToDaypartsArray(int $millis): array {
+
+        $millis = abs($millis);
+        $seconds = $millis / 1000;
+
+        return [
+            'days'    => (int) floor($seconds / 86400),
+            'hours'   => (int) floor(($seconds % 86400) / 3600),
+            'minutes' => (int) floor((($seconds % 86400) % 3600) / 60),
+            'seconds' => (int) floor((($seconds % 86400) % 3600) % 60),
+            'millis'  => (int) floor(((($millis % 86400000) % 3600000) % 60000) % 1000),
+        ];
+    }
+
+    /**
+     * Convert a number of milliseconds into a human-friendly string of days, hours,
+     * minutes, and seconds. For example, 530346265 becomes "6d 3h 19m 6.265s"
+     *
+     * @param int $millis
+     * @return string
+     */
+    public static function millisToDaypartsString(int $millis): string {
+
+        $dayparts = self::millisToDaypartsArray($millis);
+
+        $string = '';
+        if ($dayparts['days'] > 0) {
+            $string .= "{$dayparts['days']}d ";
+        }
+        if ($dayparts['hours'] > 0) {
+            $string .= "{$dayparts['hours']}h ";
+        }
+        if ($dayparts['minutes'] > 0) {
+            $string .= "{$dayparts['minutes']}m ";
+        }
+        if ($dayparts['seconds'] > 0 || $dayparts['millis'] > 0) {
+            $shortMillis = sprintf('%03d', $dayparts['millis']);
+            $string .= "{$dayparts['seconds']}.{$shortMillis}s ";
+        }
+
+        return trim($string);
     }
 
     /**
