@@ -6,6 +6,8 @@ applications. `pickset` is comprised of several classes:
 
 * `DateUtils` - methods for converting and working with dates and epoch values
 
+* `FileUtils` - methods for interacting with files and directories
+
 * `Exception\LoggedException` - an Exception that uses `Logger` to write a log 
 entry even if it's caught
 
